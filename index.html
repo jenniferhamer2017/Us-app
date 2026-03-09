@@ -95,19 +95,20 @@ function newQuote(){
   const random = Math.floor(Math.random() * quotes.length);
   const quoteBox = document.getElementById("quote");
 
-  // reset fade-in
+  // Remove class to reset animation
   quoteBox.classList.remove("show");
-  quoteBox.style.opacity = 0;  // <-- fix for iPhone/Safari
 
-  setTimeout(() => {
-    quoteBox.innerText = quotes[random];
+  // Set the text first
+  quoteBox.innerText = quotes[random];
+
+  // Trigger fade-in on next animation frame
+  requestAnimationFrame(() => {
     quoteBox.classList.add("show");
+  });
 
-    // trigger subtle background animation
-    document.body.style.animation = 'colorShift 1s ease';
-    setTimeout(()=>{document.body.style.animation = ''},1000);
-
-  }, 50); // smaller delay works better on Safari }
+  // trigger subtle background animation
+  document.body.style.animation = 'colorShift 1s ease';
+  setTimeout(()=>{document.body.style.animation = ''},1000); }
 
 </script>
 
