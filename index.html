@@ -97,6 +97,7 @@ function newQuote(){
 
   // reset fade-in
   quoteBox.classList.remove("show");
+  quoteBox.style.opacity = 0;  // <-- fix for iPhone/Safari
 
   setTimeout(() => {
     quoteBox.innerText = quotes[random];
@@ -106,8 +107,7 @@ function newQuote(){
     document.body.style.animation = 'colorShift 1s ease';
     setTimeout(()=>{document.body.style.animation = ''},1000);
 
-  }, 200);
-}
+  }, 50); // smaller delay works better on Safari }
 
 </script>
 
