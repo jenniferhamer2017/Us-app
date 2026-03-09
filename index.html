@@ -52,14 +52,42 @@ margin-right:auto;
 <script>
 
 const quotes = [
-"Fancy a quick walk?- nervous but wonderful - checking out my bum as I climb over the stile 😂", "First chat & cuppa at my house, wonderful instant connection🥰", "You going in for a peck on the cheek and me going for lips... you ending up with hair 😂", "The perfect hug(s) in my hallway...I've got a runny nose... is that attractive?😂", "Going out for my birthday in Aloy. The most incredible day spending it together 🥰","Spending our first night together at Christmas, so perfect and natural and easy🥰", "Many wonderful chats and conversations at your kitchen table, holding hands and getting lost in each others eyes💕","Going out to Aloy at 2am in the morning to bring in the blanket 🤭 - me having the least stealth shoes ever - 🐎","Secret kisses and.. other stuff in my living room 😮‍💨", "Countles elf moments 🧝‍♀️... insane connection"  
+"Fancy a quick walk?- nervous but wonderful - checking out my bum as I climb over the stile 😂", "First chat & cuppa at my house, wonderful instant connection🥰", "You going in for a peck on the cheek and me going for lips... you ending up with hair 😂 - and me blushing!", "The perfect hug(s) in my hallway...I've got a runny nose... is that attractive?😂", "Going out for my birthday in Aloy. The most incredible day spending it together 🥰","Spending our first night together at Christmas, so perfect and natural and easy🥰", "Many wonderful chats and conversations at your kitchen table, holding hands and getting lost in each others eyes💕","Going out to Aloy at 2am in the morning to bring in the blanket 🤭 - me having the least stealth shoes ever - 🐎","Secret kisses and.. other stuff in my living room 😮‍💨", "Countles elf moments 🧝‍♀️... insane connection"  
 ];
 
+// Unused quotes list
+let unusedQuotes = [...quotes];
+
 function newQuote(){
-const random = Math.floor(Math.random() * quotes.length); document.getElementById("quote").innerText = quotes[random]; }
+  if(unusedQuotes.length === 0){
+    // Reset when all quotes are used
+    unusedQuotes = [...quotes];
+  }
+
+  const quoteBox = document.getElementById("quote");
+
+  // Pick a random index from unusedQuotes
+  const randomIndex = Math.floor(Math.random() * unusedQuotes.length);
+  const selectedQuote = unusedQuotes[randomIndex];
+
+  // Remove the selected quote so it won't repeat
+  unusedQuotes.splice(randomIndex, 1);
+
+  // Reset fade-in
+  quoteBox.classList.remove("show");
+  quoteBox.innerText = selectedQuote;
+
+  // Trigger fade-in
+  requestAnimationFrame(() => {
+    quoteBox.classList.add("show");
+  });
+
+  // Trigger background animation
+  document.body.style.animation = 'colorShift 1s ease';
+  setTimeout(()=>{document.body.style.animation = ''},1000); }
 
 </script>
 
 </body>
-
 </html>
+
