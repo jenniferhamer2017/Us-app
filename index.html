@@ -21,7 +21,7 @@ background:#7a5cff;
 color:white;
 border:none;
 padding:15px 30px;
-font-size:30px;
+font-size:45px;
 border-radius:8px;
 cursor:pointer;
 }
@@ -32,7 +32,7 @@ background:#5c45cc;
 
 #quote{
 margin-top:40px;
-font-size:30px;
+font-size:45px;
 color:#333;
 max-width:500px;
 margin-left:auto;
@@ -52,25 +52,37 @@ margin-right:auto;
 <script>
 
 const quotes = [
-"Fancy a quick walk?- nervous but wonderful - checking out my bum as I climb over the stile 😂", "First chat & cuppa at my house, wonderful instant connection🥰", "You going in for a peck on the cheek and me going for lips... you ending up with hair 😂 - and me blushing!", "The perfect hug(s) in my hallway...I've got a runny nose... is that attractive?😂", "Going out for my birthday in Aloy. The most incredible day spending it together 🥰","Spending our first night together at Christmas, so perfect and natural and easy🥰", "Many wonderful chats and conversations at your kitchen table, holding hands and getting lost in each others eyes💕","Going out to Aloy at 2am in the morning to bring in the blanket 🤭 - me having the least stealth shoes ever - 🐎","Secret kisses and.. other stuff in my living room 😮‍💨", "Countles elf moments 🧝‍♀️... insane connection🥰","Might need something a bit bigger than a net; space sounds like it’s probably a long way off 🤷‍♂️😂😂","Jim: In other news…what’s the story with the police cars shooting up Birchwood with blue lights? X - Jen: They are finally putting their foot down on the tyre swing regulations…. 😬Jim: 🤣🤣 Honestly the funniest thing today!! X","Well, the Jen experience, £5,000, wait that sounds wrong, I’ll let myself out… 😁🤣","Art’a’noon Sassy Knickers The Experience 😁","Adventure food that is edible 👇 x", "But it’s important you can get something warm inside you......","Yarp. Fancy a quick walk lunchtime-ish tomorrow? No wrong answer x","What could go wrong with that idea…four children?! 🤣 Like four candles but not x", "If it involves grabbing your ankles…it’s unlikely to be a four hour trance…","I couldn’t send you inappropriate messages about taking you up the Gwent 👆👉🫵👇🤷‍♂️","
+"Fancy a quick walk?- nervous but wonderful - checking out my bum as I climb over the stile 😂", "First chat & cuppa at my house, wonderful instant connection🥰", "You going in for a peck on the cheek and me going for lips... you ending up with hair 😂 - and me blushing!", "The perfect hug(s) in my hallway...I've got a runny nose... is that attractive?😂", "Going out for my birthday in Aloy. The most incredible day spending it together 🥰","Spending our first night together at Christmas, so perfect and natural and easy🥰", "Many wonderful chats and conversations at your kitchen table, holding hands and getting lost in each others eyes💕","Going out to Aloy at 2am in the morning to bring in the blanket 🤭 - me having the least stealth shoes ever - 🐎","Secret kisses and.. other stuff in my living room 😮‍💨", "Countles elf moments 🧝‍♀️... insane connection🥰","Might need something a bit bigger than a net; space sounds like it’s probably a long way off 🤷‍♂️😂😂","Jim: In other news…what’s the story with the police cars shooting up Birchwood with blue lights? X - Jen: They are finally putting their foot down on the tyre swing regulations…. 😬Jim: 🤣🤣 Honestly the funniest thing today!! X","Well, the Jen experience, £5,000, wait that sounds wrong, I’ll let myself out… 😁🤣","Art’a’noon Sassy Knickers The Experience 😁","Adventure food that is edible 👇 x", "But it’s important you can get something warm inside you......","Yarp. Fancy a quick walk lunchtime-ish tomorrow? No wrong answer x","What could go wrong with that idea…four children?! 🤣 Like four candles but not x", "If it involves grabbing your ankles…it’s unlikely to be a four hour trance…","I couldn’t send you inappropriate messages about taking you up the Gwent 👆👉🫵👇🤷‍♂️"
 ];
 
+// Unused quotes list
+let unusedQuotes = [...quotes];
+
 function newQuote(){
-  const random = Math.floor(Math.random() * quotes.length);
+  if(unusedQuotes.length === 0){
+    // Reset when all quotes are used
+    unusedQuotes = [...quotes];
+  }
+
   const quoteBox = document.getElementById("quote");
 
-  // Remove class to reset animation
+  // Pick a random index from unusedQuotes
+  const randomIndex = Math.floor(Math.random() * unusedQuotes.length);
+  const selectedQuote = unusedQuotes[randomIndex];
+
+  // Remove the selected quote so it won't repeat
+  unusedQuotes.splice(randomIndex, 1);
+
+  // Reset fade-in
   quoteBox.classList.remove("show");
+  quoteBox.innerText = selectedQuote;
 
-  // Set the text first
-  quoteBox.innerText = quotes[random];
-
-  // Trigger fade-in on next animation frame
+  // Trigger fade-in
   requestAnimationFrame(() => {
     quoteBox.classList.add("show");
   });
 
-  // trigger subtle background animation
+  // Trigger background animation
   document.body.style.animation = 'colorShift 1s ease';
   setTimeout(()=>{document.body.style.animation = ''},1000); }
 
@@ -78,4 +90,3 @@ function newQuote(){
 
 </body>
 </html>
-
