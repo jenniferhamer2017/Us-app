@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Random Love Note</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+text-align:center;
+background:#f6f3ff;
+padding-top:100px;
+}
+
+h1{
+color:#444;
+}
+
+button{
+background:#7a5cff;
+color:white;
+border:none;
+padding:15px 30px;
+font-size:18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#5c45cc;
+}
+
+#quote{
+margin-top:40px;
+font-size:24px;
+color:#333;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Press for a message ❤️</h1>
+
+<button onclick="newQuote()">Give me one</button>
+
+<div id="quote"></div>
+
+<script>
+
+const quotes = [
+"You make the world softer just by being in it.", "I’m proud of you today.", "You’re stronger than the hard moments.", "Don’t forget how loved you are.", "You always find your way through.", "The world is better with you in it.", "Take a breath — you're doing great.", "You deserve kindness today."
+];
+
+function newQuote(){
+const random = Math.floor(Math.random() * quotes.length); document.getElementById("quote").innerText = quotes[random]; }
+
+</script>
+
+</body>
+
+</html>
