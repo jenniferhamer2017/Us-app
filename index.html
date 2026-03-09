@@ -2,48 +2,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Random Love Note</title>
+<title>A Little Message</title>
 
 <style>
+
 body{
-font-family: Arial, sans-serif;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+background: linear-gradient(135deg,#e8e6ff,#f7f5ff,#fff0f6);
 text-align:center;
-background:#f6f3ff;
-padding-top:100px;
+padding:30px;
 }
 
 h1{
+font-weight:500;
 color:#444;
+margin-bottom:40px;
 }
 
 button{
-background:#7a5cff;
-color:white;
+background:white;
 border:none;
-padding:15px 30px;
+padding:18px 34px;
 font-size:18px;
-border-radius:8px;
+border-radius:30px;
+box-shadow:0 6px 18px rgba(0,0,0,0.12);
 cursor:pointer;
+transition:all .2s ease;
 }
 
 button:hover{
-background:#5c45cc;
+transform:scale(1.05);
 }
 
 #quote{
 margin-top:40px;
 font-size:24px;
+max-width:520px;
+line-height:1.5;
 color:#333;
-max-width:500px;
-margin-left:auto;
-margin-right:auto;
+opacity:0;
+transform:translateY(10px);
+transition:all .6s ease;
 }
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Press for a message ❤️</h1>
+<h1>Tap for a little message ❤️</h1>
 
 <button onclick="newQuote()">Give me one</button>
 
@@ -52,14 +71,48 @@ margin-right:auto;
 <script>
 
 const quotes = [
-"You make the world softer just by being in it.", "I’m proud of you today.", "You’re stronger than the hard moments.", "Don’t forget how loved you are.", "You always find your way through.", "The world is better with you in it.", "Take a breath — you're doing great.", "You deserve kindness today."
+
+"You make the world softer just by being in it.",
+
+"I’m proud of you today.",
+
+"You’re stronger than the hard moments.",
+
+"You are loved more than you realise.",
+
+"Everything will work out in its own time.",
+
+"You always find a way through.",
+
+"The world is brighter because of you.",
+
+"Take a breath. You're doing better than you think.",
+
+"You deserve kindness today.",
+
+"I'm always rooting for you."
+
 ];
 
 function newQuote(){
-const random = Math.floor(Math.random() * quotes.length); document.getElementById("quote").innerText = quotes[random]; }
+
+const random = Math.floor(Math.random() * quotes.length);
+
+const quoteBox = document.getElementById("quote");
+
+quoteBox.classList.remove("show");
+
+setTimeout(()=>{
+
+quoteBox.innerText = quotes[random];
+
+quoteBox.classList.add("show");
+
+},200);
+
+}
 
 </script>
 
 </body>
-
 </html>
