@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>A Little Message</title>
 
+<!-- Penguin icon for iPhone home screen --> <link rel="apple-touch-icon" href="penguin.png">
+
 <style>
 
 body{
@@ -17,6 +19,7 @@ body{
   background: linear-gradient(135deg,#e8e6ff,#f7f5ff,#fff0f6);
   text-align:center;
   padding:30px;
+  transition: background 1s ease;
 }
 
 h1{
@@ -56,12 +59,18 @@ button:hover{
   transform:translateY(0);
 }
 
+@keyframes colorShift {
+  0% {background: linear-gradient(135deg,#e8e6ff,#f7f5ff,#fff0f6);}
+  50% {background: linear-gradient(135deg,#fff0f6,#e0f7ff,#e8e6ff);}
+  100% {background: linear-gradient(135deg,#e8e6ff,#f7f5ff,#fff0f6);}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Tap for a little message ❤️</h1>
+<h1>Tap for a little message 🐧</h1>
 
 <button onclick="newQuote()">Give me one</button>
 
@@ -86,12 +95,17 @@ function newQuote(){
   const random = Math.floor(Math.random() * quotes.length);
   const quoteBox = document.getElementById("quote");
 
-  // reset animation
+  // reset fade-in
   quoteBox.classList.remove("show");
 
   setTimeout(() => {
     quoteBox.innerText = quotes[random];
     quoteBox.classList.add("show");
+
+    // trigger subtle background animation
+    document.body.style.animation = 'colorShift 1s ease';
+    setTimeout(()=>{document.body.style.animation = ''},1000);
+
   }, 200);
 }
 
